@@ -1,0 +1,15 @@
+extends base
+include mixins/picture
+
+block content
+    .jumbotron
+     h1  MediaGame 
+    .menu
+      input.men(type='button', value='Menú principal')
+      .menu2
+        input(type='button', value='Todos los articulos', onclick="window.location.href='#'")
+        input(type='button', value='OFERTAS', onclick="window.location.href='#'")
+    section#s1
+        - for (var i = 0; i < pics.length; ++i) {
+            +picture(pics[i].name, pics[i].image, pics[i].getPrice())
+        - }

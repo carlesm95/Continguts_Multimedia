@@ -1,0 +1,45 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title MediaGame: Tu tienda online de videojuegos 
+        // Bootstrap
+        link(href='public/estilos.css', rel='stylesheet')
+        link(href='libs/css/bootstrap.min.css', rel='stylesheet')
+        // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+        // WARNING: Respond.js doesn't work if you view the page via file://
+        //if lt IE 9
+          script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+          script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    body
+        - var navmenu = { Portada: '/', "OFERTAS": '/recent' }
+        nav.navbar.navbar-default(role='navigation')
+            div.navbar-header
+                button(type='button',data-toggle='collapse',data-target='#jcs-navbar-collapse-1').navbar-toggle
+                    span.sr-only Toggle navigation
+                    span.iconbar
+                    span.iconbar
+                    span.iconbar
+                a(href='#').navbar-brand MediaGame
+            div#jcs-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav
+
+                    each href, key in navmenu
+                        if key == pagekey
+                            li.active: a(href=href)= key
+                        else
+                            li: a(href=href)= key
+        #contenedor
+            block content
+
+            aside#total
+             p#suma  Total compra:
+
+        // jQuery (necessary for Bootstrap's JavaScript plugins)
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+        // Include all compiled plugins (below), or include individual files as needed
+        script(src='libs/js/bootstrap.min.js')
+        script(src='public/funciones.js')
+
