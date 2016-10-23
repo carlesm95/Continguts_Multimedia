@@ -16,8 +16,8 @@ app.use("/libs",express.static('node_modules/bootstrap/dist'));
 // Our CSS and JS files
 app.use("/public",express.static('public'));
 
-
-
+// Cargo los articulos uno a uno pasandole a Item el nombre, la URL de la imagen y el precio
+/*
 var pics = [
 	new Item("PLAYSTATION 4 PRO 1TB","https://m2.game.es/COVERV2/3D_L/130/130711.png","399.95"),
 	new Item("XBOX ONE 1TB","https://m2.game.es/COVERV2/3D_L/121/121693.png","274.95"),
@@ -28,6 +28,32 @@ var pics = [
 	new Item("PLAYSTATION 3 SLIM 500GB","https://m2.game.es/COVERV2/3D_L/089/089746.png","199.95"),
 	new Item("XBOX 360 500GB","https://m2.game.es/COVERV2/3D_L/121/121326.png","99.95")
 ];
+*/
+
+// Modulo 500px con la función searchByTerm() para conseguir fotos del resultado de la busqueda "Barcelona"
+
+// Use 500px API to get random pictures for our products
+var API500px = require('500px');
+var api500px = new API500px("YecP85RjzG08DN0MqvgFa0N780dNaDmJX6iTPbYp");
+var pics = [];
+api500px.photos.searchByTerm('Barcelona', {'sort': 'created_at', 'rpp': '10','image_size':200},  function(error, results) {
+	// Do something
+	pics = results.photos.map(function(a){
+		// Compose object to be used in show items template
+		return new Item(a.image_url);
+	});
+});
+
+
+//POKEMON API
+/*
+var request = require('superagent');
+var url = 'http://pokeapi.co/api/v2/pokemon/';
+request.get(url, function(response){
+	console.log('Response ok:', response.ok);
+	console.log('Response text:', response.text);
+});
+*/
 
 // Render frontpage
 app.get('/', function (req, res) {

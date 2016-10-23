@@ -9,7 +9,7 @@ block content
       .menu2
         input(type='button', value='Todos los articulos', onclick="window.location.href='#'")
         input(type='button', value='OFERTAS', onclick="window.location.href='#'")
-    section#s1
+    section#s1.row
         - for (var i = 0; i < pics.length; ++i) {
-            +picture(pics[i].name, pics[i].image, pics[i].getPrice())
+            +picture(pics[i])
         - }
