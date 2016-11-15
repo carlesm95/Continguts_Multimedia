@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<title> Calculadora </title>
+	<meta charset="utf-8">
+	<script language="javascript" src="calculadora.js"></script>
+</head>
+<body>
+<form>
+	N1: <input type="text" name="numero1" id="numero1" autofocus required><br>
+	<input type="button" value="+" onclick="javascript:operador('+');">
+	<input type="button" value="-" onclick="javascript:operador('-');">
+	<input type="button" value="X" onclick="javascript:operador('*');">
+	<input type="button" value="/" onclick="javascript:operador('/');">
+	<input type="button" value="C" onclick="javascript:operador('C');"><br>
+	N2: <input type="text" name="numero2" id="numero2" required><br>
+	------------------------------------------<br>
+	R = <input type="text" name="resultado" id="resultado"><br>
+</form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+h1{
+	color: #FF1493;
+}
+
+h2{
+	color: #FF69B4;
+}
+
+h3{
+	color: #FFB6C1;
+}
+
+img{
+	width:20%;
+}
+
+body{
+	font-family: Arial;
+	font-size: 16px;
+}
+/*Este es un contenedor de un identificador único*/
+/*# es para ultilizar los id's que son únicos*/
+#contenedor {
+	width: 800px;
+	margin: 0 auto;
+}
+
+/* con punto modifico las clases */
+.azul{
+	color: blue;
+}
+
+/* Las clases se pueden utilizar tantas veces como queramos en la pagina, el identificador no, es único*/

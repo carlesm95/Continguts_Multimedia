@@ -2,15 +2,16 @@ var tot=0;
 var nid=1;
 
 function borrar(nid,pre){
+	//alert("nfjdskhg");   Para cuando le des al boton que salga un mensaje
     var borrar = document.getElementById(nid);
     borrar.parentNode.removeChild(borrar);
     var borrar1 = document.getElementById('b'+nid);
     borrar1.parentNode.removeChild(borrar1);
 	tot-=pre;
 	if (tot<=0){
-		document.getElementById("suma").innerHTML="Total compra:";
+		document.getElementById("suma").innerHTML="Total compra";
 	} else{
-		document.getElementById("suma").innerHTML="Total compra: "+tot.toFixed(2)+"€";
+		document.getElementById("suma").innerHTML="Total compra "+tot.toFixed(2)+"€";
 	}
 }
 
@@ -29,6 +30,7 @@ function comprar(descrip, precio){
    
    var contenido=document.createTextNode(descrip+" "+precio+"€");
    parrafo.appendChild(contenido);
+   //ids.appendChild(anclaN);
    espacio.appendChild(parrafo);
    var boton=document.createElement("input");
    boton.setAttribute("type", "button");
@@ -37,62 +39,6 @@ function comprar(descrip, precio){
    boton.setAttribute("onClick","borrar("+nid+","+precio+");");
    espacio.appendChild(boton);
    tot+=parseFloat(precio);
-   document.getElementById("suma").innerHTML="Total compra: "+tot.toFixed(2)+"€";
+   document.getElementById("suma").innerHTML="Total compra "+tot.toFixed(2)+"€"; // toFixed para fijar el numero de decimales que queremos
    nid++;
 }
-/*
-$(.menu)(function(){
-	
-}
-*/
-/*
-$(document).ready(function(){
-    $(".menu").mouseenter(function(){
-        $(".menu_btn").animate({
-            opacity: '0.5',
-            height: '70%',
-            width: '70%',
-        });
-    });
-});
-
-$(document).ready(function(){
-    $(".menu").mouseout(function(){
-        $(".menu_btn").animate({
-            opacity: '1.0',
-            height: '70%',
-            width: '70%',
-        });
-    });
-});
-*/
-$(document).ready(function(){
-    $(".men").click(function(){
-        $(".menu2").slideToggle("slow");
-    });
-});
-
-$(document).ready(function(){
-    $('.imagen').mouseenter(function() {
-        $(this).css("background-color","#EEE");
-    });
-    $('.imagen').mouseout(function() {
-        $(this).css("background-color","#FFF");
-    });
-});
-
-$(document).ready(function(){
-    $('.boton').mouseenter(function() {
-        $(this).animate({
-            height: '35px',
-            width: '50%'
-        });
-    });
-    $('.boton').mouseout(function() {
-        $(this).animate({
-            height: '30px',
-            width: '40%'
-        });
-    });
-});
-
