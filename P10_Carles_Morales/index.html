@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        html, body { height: 100%; margin: 0; padding: 0; }
+        #map { height: 100%; }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script type="text/javascript">
+    var map;
+    var myLatLng;
+    var image = 'images/icon.png';
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            initMap(position.coords.latitude, position.coords.longitude);
+        });
+
+        function initMap(latitude, longitude) {
+            myLatLng = {lat: latitude, lng: longitude};
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                zoom: 6
+            });
+
+            var locations = [
+                ['Terrassa', myLatLng.lat, myLatLng.lng],
+                ['Madrid', 40.4168, -3.7038],
+                ['UPC Manresa', 41.7365728, 1.828783499999986],
+                ['Andorra La Vella', 42.5063, 1.5218],
+                ['Pamplona', 42.8169, -1.6432],
+                ['Roquetas de Mar', 36.7637, -2,6154]
+            ];
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var newMarker, i;
+
+            newMarker = new google.maps.Marker({
+                position: myLatLng,
+                map: map
+            });
+
+            google.maps.event.addListener(newMarker, 'click', (function(newMarker) {
+                return function() {
+                    infowindow.setContent(locations[0][0]);
+                    infowindow.open(map, newMarker);
+                }
+            })(newMarker, 0));
+
+            for (i = 1; i < locations.length; i++) {
+                newMarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    icon: image
+                });
+
+                google.maps.event.addListener(newMarker, 'click', (function(newMarker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, newMarker);
+                    }
+                })(newMarker, i));
+            }
+        }
+    } else {
+        alert("Sorry, geolocation not available.");
+    }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key= AIzaSyDzRogAeh8CwmW1yT_IRznT2VmiSnE3pUI &callback=initMap">
+</script>
+</body>
+</html>
